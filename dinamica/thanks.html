@@ -1,0 +1,28 @@
+<DOCTYPE html>
+<html>
+    <head>
+        <title>Obrigado</title>
+        <!-- Latest compiled and minified CSS -->
+        <script src="https://code.jquery.com/jquery-2.1.3.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+        <input type="text" id="entrada">
+        <div id="assuntos">
+            <ul id="list-group">
+            </ul>
+        </div>
+        <div id="aprendidos">
+            <ul id="list-group">
+        <script>
+        $('input').bind("enterKey", function(e) {
+            $('#list-group').append('<li>' + $("#entrada").val() + '</li>');
+        });
+        $('input').keyup(function(e) {
+            if(e.keyCode == 13) {
+                $(this).trigger("enterKey");
+            }
+        });
+        </script>
+    </body>
+</html>
