@@ -24,11 +24,13 @@
         </div>
     </div>
 
+    <h2>Items adicionados</h2>
     <div class="btn-group-vertical" role="group" id="assuntos">
 
     </div>
 
     <div id="aprendidos">
+        <h2>Aprendidos</h2>
         <ul id="list-group">
         </ul>
     </div>
@@ -39,18 +41,29 @@
         });
 
         function adicionarItem(item) {
-            console.log(item);
-            $('#assuntos').append('<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">' + item);
-            $('#assuntos').append('</button>');
-            $('#assuntos').append('<ul class="dropdown-menu" role="menu"><li><a onclick="apagar()">Apagar</a></li><li><a onclick="mover()">Mover</a></li>');
-                $('#assuntos').append("</ul>");
-
+            var nova_tag = "<div class='novoItem'>";
+            nova_tag += '<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">' + item;
+            nova_tag += '</button>';
+            nova_tag += '<ul class="dropdown-menu" role="menu"><li><a onclick="apagar($(this))">Apagar</a></li><li><a onclick="mover($(this))">Mover</a></li>';
+            nova_tag += '</ul></div>';
+            $('#assuntos').append(nova_tag);
         }
+
         $('input').keyup(function (e) {
             if (e.keyCode == 13) {
                 $(this).trigger("enterKey");
             }
         });
+
+        function apagar(i) {
+            i.parent().parent().parent().remove();
+        }
+        function mover(i) {
+            console.log();
+            var nova_tag = "<li>" + i.parent().parent().parent().find(".btn").text() + "</li>";
+            $('#aprendidos').append(nova_tag);
+            apagar(i);
+        }
 
     </script>
     </body>
